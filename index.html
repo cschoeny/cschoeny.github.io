@@ -1,0 +1,1374 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clayton Schoeny | Product Data Scientist</title>
+    <meta name="description" content="Personal webpage of Clayton Schoeny, Product Data Scientist.">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Markdown Parser for AI Responses -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                fontFamily: {
+                    sans: ['Inter', 'sans-serif'],
+                },
+            },
+        }
+    </script>
+
+    <style>
+        /* Custom scrollbar for sidebar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+
+        /* Hide scrollbar for Chrome, Safari and Opera */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Hide scrollbar for IE, Edge and Firefox */
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            /* IE and Edge */
+            scrollbar-width: none;
+            /* Firefox */
+        }
+
+        /* Transition for expanding details */
+        .pub-details {
+            transition:
+                max-height 0.3s ease-out,
+                opacity 0.3s ease-out,
+                padding 0.3s ease,
+                margin-top 0.3s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+
+            /* Collapsed State Overrides */
+            padding: 0 !important;
+            margin-top: 0 !important;
+            border-width: 0 !important;
+        }
+
+        .pub-details.expanded {
+            max-height: 1000px;
+            /* Arbitrary large height */
+            opacity: 1;
+
+            /* Expanded State Overrides (restoring Tailwind values) */
+            padding: 0.75rem !important;
+            /* p-3 */
+            margin-top: 0.5rem !important;
+            /* mt-2 */
+            border-width: 1px !important;
+        }
+
+        .chevron-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .chevron-icon.rotated {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-900 font-sans antialiased relative">
+
+    <!-- Mobile Overlay -->
+    <div id="mobile-overlay"
+        class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden transition-opacity duration-300"
+        onclick="toggleSidebar()"></div>
+
+    <!-- Sidebar -->
+    <aside id="sidebar"
+        class="fixed top-0 left-0 h-full w-64 bg-slate-900 text-slate-100 shadow-xl z-50 transform -translate-x-full md:translate-x-0 transition-transform duration-300 ease-in-out flex flex-col">
+
+        <!-- Header -->
+        <div class="p-4 bg-slate-800 text-center relative shrink-0">
+            <!-- Close button -->
+            <button onclick="toggleSidebar()" class="absolute top-4 right-4 md:hidden text-slate-400 hover:text-white">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <img src="images/profile.jpg" alt="Clayton Schoeny"
+                class="w-20 h-20 mx-auto rounded-full object-cover mb-3 shadow-inner border-2 border-white/20">
+            <h1 class="text-lg font-bold text-white">Clayton Schoeny</h1>
+            <p class="text-blue-300 text-xs font-medium">Product Data Scientist</p>
+            <p class="text-slate-400 text-[10px] mt-1 flex items-center justify-center gap-1">
+                <i data-lucide="map-pin" class="w-3 h-3"></i> Los Angeles, CA
+            </p>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="flex-1 overflow-y-auto py-4 px-3 space-y-1 custom-scrollbar">
+            <a href="#about" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="about">
+                <i data-lucide="user" class="w-4 h-4"></i> About Me
+            </a>
+            <a href="#experience" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="experience">
+                <i data-lucide="briefcase" class="w-4 h-4"></i> Experience
+            </a>
+            <a href="#research" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="research">
+                <i data-lucide="code" class="w-4 h-4"></i> Data Science
+            </a>
+            <a href="#education" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="education">
+                <i data-lucide="graduation-cap" class="w-4 h-4"></i> Education
+            </a>
+            <a href="#awards" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="awards">
+                <i data-lucide="award" class="w-4 h-4"></i> Awards
+            </a>
+            <a href="#publications" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="publications">
+                <i data-lucide="book-open" class="w-4 h-4"></i> Publications
+            </a>
+            <a href="#contact" onclick="toggleSidebar()"
+                class="nav-link w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 text-slate-300 hover:bg-slate-800 hover:text-white"
+                data-target="contact">
+                <i data-lucide="mail" class="w-4 h-4"></i> Contact
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <div class="p-4 border-t border-slate-800 space-y-2 shrink-0">
+            <a href="Schoeny_Clayton_CV.pdf"
+                class="flex items-center justify-center gap-2 w-full py-2 bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs rounded transition-colors">
+                <i data-lucide="download" class="w-3 h-3"></i> Download CV
+            </a>
+            <div class="flex justify-center gap-4 text-slate-400">
+                <a href="https://www.linkedin.com/in/claytonschoeny/" target="_blank" rel="noopener noreferrer"
+                    class="hover:text-blue-400 transition-colors">
+                    <i data-lucide="linkedin" class="w-4 h-4"></i>
+                </a>
+                <a href="mailto:cschoeny@gmail.com" class="hover:text-blue-400 transition-colors">
+                    <i data-lucide="mail" class="w-4 h-4"></i>
+                </a>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="md:ml-64 transition-all duration-300">
+
+        <!-- Mobile Header -->
+        <div class="md:hidden bg-white shadow-sm sticky top-0 z-30 px-4 py-3 flex items-center justify-between">
+            <h1 class="font-bold text-base text-slate-800">Clayton Schoeny</h1>
+            <button onclick="toggleSidebar()" class="p-2 text-slate-600 hover:bg-slate-100 rounded-lg">
+                <i data-lucide="menu" class="w-5 h-5"></i>
+            </button>
+        </div>
+
+        <main class="p-4 md:p-8 max-w-5xl mx-auto space-y-12 pb-12">
+
+            <!-- 1. About Section -->
+            <section id="about" class="scroll-mt-24">
+                <div class="max-w-3xl">
+                    <h1 class="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4 tracking-tight">
+                        Hello, I'm <span class="text-blue-600">Clayton</span>.
+                    </h1>
+                    <div class="space-y-4 text-base text-slate-600 leading-relaxed">
+                        <p>
+                            I am a <strong>Product Data Scientist</strong> working at <a href="https://cash.app/"
+                                class="text-blue-600 hover:underline font-medium">Cash App</a> on the Moneybot team.
+                            I'm happy to be on a team that is directly furthering Cash App's mission of expanding
+                            financial access and inclusion. I previously worked on the Cash Card and Cash Families
+                            teams.
+                        </p>
+                        <p>
+                            I'm a Los Angeles local, born and raised in Redondo Beach. I received my BS, MS, and PhD
+                            degrees in Electrical Engineering from UCLA. My doctoral research focused on utilizing both
+                            the inherent redundancy in data and the asymmetric errors in specific channels to store,
+                            analyze, and transmit data efficiently.
+                        </p>
+                        <p>
+                            I find data science to be a perfect post-academic career as it allows me to combine my
+                            strong
+                            mathematical background with programming, statistics, machine learning, and business acumen
+                            to make excellent critical decisions.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Experience Section -->
+            <section id="experience" class="scroll-mt-16">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-200 pb-2">
+                    <i data-lucide="briefcase" class="text-blue-600 w-6 h-6"></i>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Industry Experience</h2>
+                </div>
+
+                <div class="space-y-1">
+                    <!-- Job 1 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2020
+                                    - Present</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <div class="flex justify-between items-start mb-1">
+                                        <h3 class="text-base font-bold text-slate-900">Cash App (Square)</h3>
+                                    </div>
+                                    <p class="text-blue-600 text-sm font-medium mb-2">Product Data Scientist</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Worked
+                                            directly with both client and server engineers to establish and track
+                                            metrics for new feature rollouts.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Created
+                                            numerous ETLs to bring data into Snowflake for wider consumption.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Devised,
+                                            analyzed, and executed policy proposals for a variety of challenging
+                                            business decisions.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 2 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2018
+                                    - 2020</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">Fair</h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-2">Senior Data Scientist</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Created
+                                            Cold Start prediction for favorable makes, models, and body styles.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Developed
+                                            Dynamic Search to populate vehicle order based on user behavior.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Implemented
+                                            Survey Integration to customize home screen and search results.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>CarRank
+                                            algorithm design using supervised learning (patent pending).</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Customer
+                                            segmentation using unsupervised machine learning for re-engagement
+                                            campaigns.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Vehicle
+                                            Bucketing library creation for vehicle filtering.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 3 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-5 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2015</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">SPAWAR SSC-Pacific</h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-1">Naval Research Enterprise
+                                        Internship</p>
+                                    <p class="text-slate-500 text-xs italic mb-2">Command and Control</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Developed
+                                            new error-correcting codes to synchronize Command and Control data in
+                                            disconnected, intermittent, and low-bandwidth environments.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 4 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2012
+                                    - 2013</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">DIRECTV</h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-2">Space, Communications, Video <span
+                                            class="text-slate-400 font-normal text-xs ml-1">(Intern)</span></p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Created
+                                            reports detailing probable outcomes of implementing new bit-rate harvesting
+                                            schemes.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Investigated
+                                            technical problems in audio loudness inconsistencies.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Wrote
+                                            shell scripts to test archived set top boxes for descriptive video service
+                                            compatibility.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Job 5 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2010
+                                    - 2011</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">The Aerospace Corporation</h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-1">Communication Systems Engineering
+                                        <span class="text-slate-400 font-normal text-xs ml-1">(Intern)</span>
+                                    </p>
+                                    <p class="text-slate-500 text-xs italic mb-2">Performance and Analysis Division</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Developed
+                                            MATLAB scripts simulating AEHF satellite performance against jammers.</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Wrote
+                                            C++ scripts to analyze coverage of shaped satellite beams on the WGS system.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3. Research / Mini-Projects -->
+            <section id="research" class="scroll-mt-16">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-200 pb-2">
+                    <i data-lucide="code" class="text-blue-600 w-6 h-6"></i>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Data Science Mini-Projects</h2>
+                </div>
+
+                <p class="text-slate-600 mb-4 max-w-3xl text-sm">
+                    Fun weekend projects exploring machine learning algorithms completely independent of my
+                    academic/industry work.
+                    View code on <a href="https://github.com/cschoeny/personal-projects"
+                        class="text-blue-600 hover:underline">GitHub</a>.
+                </p>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <a href="https://github.com/cschoeny/personal-projects/tree/master/UFC-Forecasting" target="_blank"
+                        rel="noopener noreferrer" class="block h-full group">
+                        <div
+                            class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 h-full flex flex-col group-hover:shadow-md group-hover:border-blue-200 group-hover:ring-2 group-hover:ring-blue-50 transition-all duration-300">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="text-3xl">🥊</div>
+                                <i data-lucide="external-link" class="text-slate-400 w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 mb-2">UFC Fantasy Forecasting</h3>
+                            <div class="mt-auto flex flex-wrap gap-1.5">
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Kernel
+                                    density estimation</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Monte Carlo
+                                    simulation</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Linear
+                                    programming</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Web
+                                    scraping</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/cschoeny/personal-projects/tree/master/Fantasy-Golf-Forecasting"
+                        target="_blank" rel="noopener noreferrer" class="block h-full group">
+                        <div
+                            class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 h-full flex flex-col group-hover:shadow-md group-hover:border-blue-200 group-hover:ring-2 group-hover:ring-blue-50 transition-all duration-300">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="text-3xl">⛳</div>
+                                <i data-lucide="external-link" class="text-slate-400 w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 mb-2">Daily Fantasy Golf Prediction</h3>
+                            <div class="mt-auto flex flex-wrap gap-1.5">
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Poisson
+                                    random variables</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Monte Carlo
+                                    simulation</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Linear
+                                    programming</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Web
+                                    scraping</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/cschoeny/personal-projects/tree/master/FIFA-2018" target="_blank"
+                        rel="noopener noreferrer" class="block h-full group">
+                        <div
+                            class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 h-full flex flex-col group-hover:shadow-md group-hover:border-blue-200 group-hover:ring-2 group-hover:ring-blue-50 transition-all duration-300">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="text-3xl">⚽</div>
+                                <i data-lucide="external-link" class="text-slate-400 w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 mb-2">FIFA18 Dataset Exploration</h3>
+                            <div class="mt-auto flex flex-wrap gap-1.5">
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Nearest
+                                    Neighbors</span>
+                                <span
+                                    class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Bootstrapping</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">PCA</span>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="https://github.com/cschoeny/personal-projects/tree/master/Book-Genre-Predictor"
+                        target="_blank" rel="noopener noreferrer" class="block h-full group">
+                        <div
+                            class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 h-full flex flex-col group-hover:shadow-md group-hover:border-blue-200 group-hover:ring-2 group-hover:ring-blue-50 transition-all duration-300">
+                            <div class="flex items-start justify-between mb-3">
+                                <div class="text-3xl">📚</div>
+                                <i data-lucide="external-link" class="text-slate-400 w-4 h-4"></i>
+                            </div>
+                            <h3 class="text-base font-bold text-slate-900 mb-2">Book Genre Prediction</h3>
+                            <div class="mt-auto flex flex-wrap gap-1.5">
+                                <span
+                                    class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">TF-IDF</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Matrix
+                                    Factorization</span>
+                                <span class="text-[10px] px-1.5 py-0.5 bg-slate-100 text-slate-600 rounded">Cosine
+                                    Similarity</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 4. Education Section -->
+            <section id="education" class="scroll-mt-16">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-200 pb-2">
+                    <i data-lucide="graduation-cap" class="text-blue-600 w-6 h-6"></i>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Education</h2>
+                </div>
+
+                <div class="space-y-1">
+                    <!-- Edu 1 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2014
+                                    - 2018</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">University of California, Los Angeles
+                                    </h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-2">Ph.D. in Electrical & Computer
+                                        Engineering</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Lab:
+                                            Laboratory for Robust Information Systems</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Dissertation:
+                                            Coding for Future Large-Scale Data Systems</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>GPA:
+                                            4.0</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edu 2 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2012
+                                    - 2014</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">University of California, Los Angeles
+                                    </h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-2">M.S. in Electrical Engineering</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Thesis:
+                                            Efficient File Synchronization</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>GPA:
+                                            3.7</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Edu 3 -->
+                    <div class="relative pl-6 md:pl-0">
+                        <div class="hidden md:block absolute left-[20%] top-0 bottom-0 w-px bg-slate-200 -ml-px"></div>
+                        <div
+                            class="hidden md:block absolute left-[20%] top-6 w-3 h-3 bg-blue-600 rounded-full -ml-[5px] border-2 border-white ring-2 ring-blue-100">
+                        </div>
+                        <div class="md:flex gap-6 mb-6">
+                            <div class="md:w-[20%] mb-1 md:mb-0 flex-shrink-0 md:text-right md:pt-4">
+                                <span
+                                    class="inline-block px-3 py-1 bg-slate-100 text-slate-600 text-sm font-bold rounded-full">2007
+                                    - 2012</span>
+                            </div>
+                            <div class="md:w-[80%]">
+                                <div
+                                    class="bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300">
+                                    <h3 class="text-base font-bold text-slate-900">University of California, Los Angeles
+                                    </h3>
+                                    <p class="text-blue-600 text-sm font-medium mb-2">B.S. in Electrical Engineering</p>
+                                    <ul class="space-y-1.5 text-slate-600 text-sm leading-relaxed">
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Minor
+                                            in Mathematics</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Latin
+                                            Honors: Cum Laude</li>
+                                        <li class="flex items-start gap-2"><span
+                                                class="mt-1.5 w-1.5 h-1.5 bg-slate-300 rounded-full flex-shrink-0"></span>Senior
+                                            Design Project: Interactive Speech Recognition</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 5. Awards Section -->
+            <section id="awards" class="scroll-mt-16">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-200 pb-2">
+                    <i data-lucide="award" class="text-blue-600 w-6 h-6"></i>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Honors & Awards</h2>
+                </div>
+
+                <div class="grid gap-4">
+                    <!-- Award 1 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2018</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">Distinguished PhD Dissertation in Signals &
+                                        Systems Award</h3>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p>Award given to the best PhD dissertation in the Signals & Systems track of the
+                                    Electrical and Computer Engineering Department at UCLA.</p>
+                                <p class="mt-2"><a
+                                        href="https://www.ee.ucla.edu/electrical-and-computer-engineering-2017-2018-outstanding-student-awards/"
+                                        target="_blank" class="text-blue-600 hover:underline">UCLA press release</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 2 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2018</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">Best Paper Award: IEEE SELSE</h3>
+                                    <p class="text-slate-500 text-xs italic">IEEE Workshop on Silicon Errors in Logic –
+                                        System Effects</p>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p><b>Title:</b> Parity++: Lightweight Error Correction for Last Level Caches</p>
+                                <p><b>Authors:</b> Irina Alam, Clayton Schoeny, Lara Dolecek, Puneet Gupta</p>
+                                <p class="mt-2">Our paper is one of three papers to win the "Best of SELSE" award at
+                                    2018's gathering of computing reliability experts. The paper will re-appear in a
+                                    special session and will be published in the proceedings of the prestigious
+                                    IEEE/IFIP International Conference on Dependable Systems and Networks (DSN) in
+                                    Luxembourg City, Luxembourg, June 2018.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 3 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2017</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">Best Paper Award: ACM/IEEE Embedded Systems Week
+                                    </h3>
+                                    <p class="text-slate-500 text-xs italic">ACM/IEEE International Conference on
+                                        Compilers, Architecture, and System Synthesis (CASES)</p>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p><b>Title:</b> Low-Cost Memory Fault Tolerance for IoT Devices</p>
+                                <p><b>Authors:</b> Mark Gottscho, Irina Alam, Clayton Schoeny, Lara Dolecek, Puneet
+                                    Gupta</p>
+                                <p class="mt-2">Winner of the Best Paper Award at ACM/IEEE International Conference on
+                                    Compilers, Architecture, and System Synthesis (CASES), at Embedded Systems Week in
+                                    Seoul, Korea. Paper will appear in a special ES Week issue of ACM Transactions on
+                                    Embedded Computing Systems.</p>
+                                <p class="mt-2"><a
+                                        href="http://www.ee.ucla.edu/ece-students-irina-mark-and-clayton-win-best-paper-award-at-cases-conference-in-embedded-systems-week/"
+                                        target="_blank" class="text-blue-600 hover:underline">UCLA press release</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 4 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2017</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">2017-2018 UCLA Dissertation Year Fellowship
+                                        Winner</h3>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p>A campus wide fellowship to support doctoral students who are within one year of
+                                    completing and filing their dissertation. Award winners are chosen based on the
+                                    impact, innovation, and significance of the work.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 5 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2016</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">Best Paper Award: IEEE SELSE</h3>
+                                    <p class="text-slate-500 text-xs italic">IEEE Workshop on Silicon Errors in Logic –
+                                        System Effects</p>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p><b>Title:</b> Software-Defined Error-Correcting Codes</p>
+                                <p><b>Authors:</b> Mark Gottscho, Clayton Schoeny, Lara Dolecek, Puneet Gupta</p>
+                                <p class="mt-2">Our paper is one of three papers to win the "Best of SELSE" award at
+                                    2016's gathering of computing reliability experts. The paper be re-appeared in a
+                                    special session and was be published in the proceedings of the prestigious IEEE/IFIP
+                                    International Conference on Dependable Systems and Networks (DSN) in Toulouse,
+                                    France, June 2016.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 6 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2016</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">2016 Qualcomm Innovation Fellowship Winner</h3>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p><b>Innovation Topic:</b> Software-Defined Error-Correcting Codes</p>
+                                <p><b>Coauthor:</b> Mark Gottscho</p>
+                                <p class="mt-2">One of eight winning proposals for the prestigious $100K/1 year Qualcomm
+                                    Innovation Fellowship (QInF) in 2016. There were 129 proposals submitted by teams of
+                                    two PhD students from only the top 18 ranked US universities (6.2% acceptance rate).
+                                </p>
+                                <p class="mt-2"><a
+                                        href="http://dailybruin.com/2016/05/23/ucla-doctoral-students-win-100000-grant-to-research-data-recovery/"
+                                        target="_blank" class="text-blue-600 hover:underline">Daily Bruin article</a>
+                                </p>
+                                <p><a href="http://www.ee.ucla.edu/ee-phd-student-duo-wins-the-2016-qualcomm-innovation-fellowship-to-improve-system-resilience-against-memory-errors/"
+                                        target="_blank" class="text-blue-600 hover:underline">EE news article</a></p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 7 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2015</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">2014-2015 Henry Samueli Excellence in Teaching
+                                        Award</h3>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p>Best Teaching Assistant for EE Lecture Course: Spring 2015 EE132A Introduction to
+                                    Communication Systems.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 8 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2015</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer"
+                                        onclick="toggleAbstract(this)">2015 Qualcomm Innovation Fellowship Finalist</h3>
+                                </div>
+                                <button onclick="toggleAbstract(this)"
+                                    class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                            <div
+                                class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                                <p><b>Innovation Topic:</b> Coding Techniques for Next-Generation 3-D Flash Memories</p>
+                                <p><b>Coauthor:</b> Frederic Sala</p>
+                                <p class="mt-2">There were 146 proposals submitted by teams of two PhD students from
+                                    only the top 18 ranked US universities. Of these, 35 finalists were selected
+                                    (acceptance rate 24.0%).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Award 9 -->
+                    <div
+                        class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-start">
+                                <div>
+                                    <div class="flex items-center gap-2 mb-1">
+                                        <span
+                                            class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded bg-slate-100 text-slate-600">2012</span>
+                                    </div>
+                                    <h3 class="text-base font-bold text-slate-900 mb-1">Dean's Honors List</h3>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 6. Publications Section -->
+            <section id="publications" class="scroll-mt-16">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-200 pb-2">
+                    <i data-lucide="book-open" class="text-blue-600 w-6 h-6"></i>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Selected Publications</h2>
+                </div>
+
+                <p class="text-slate-600 mb-4 max-w-3xl text-sm">
+                    Below is a list of my publications. Works currently in progress or review are not included.
+                    Impact can be assessed at my <a href="https://scholar.google.com/citations?user=UNYgPqcAAAAJ&hl=en"
+                        class="text-blue-600 hover:underline">Google Scholar page</a>.
+                </p>
+
+                <!-- Filter Tabs -->
+                <div class="flex flex-wrap gap-2 mb-4" id="pub-filters">
+                    <!-- Filters will be generated by JS -->
+                </div>
+
+                <div class="grid gap-4" id="publications-grid">
+                    <!-- Cards will be generated by JS -->
+                </div>
+            </section>
+
+            <!-- 7. Contact Section -->
+            <section id="contact" class="scroll-mt-16 mb-8">
+                <div class="flex items-center gap-3 mb-4 border-b border-slate-200 pb-2">
+                    <i data-lucide="mail" class="text-blue-600 w-6 h-6"></i>
+                    <h2 class="text-xl md:text-2xl font-bold text-slate-800">Contact</h2>
+                </div>
+
+                <div class="bg-slate-900 text-white border-0 rounded-lg shadow-sm p-6">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div>
+                            <h3 class="text-xl font-bold mb-1">Let's Connect</h3>
+                            <p class="text-slate-400 text-sm">Feel free to reach out to me — email is preferred.</p>
+                        </div>
+                        <div class="flex gap-3">
+                            <a href="mailto:cschoeny@gmail.com"
+                                class="flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium text-sm transition-colors">
+                                <i data-lucide="mail" class="w-4 h-4"></i> Email Me
+                            </a>
+                            <a href="https://www.linkedin.com/in/claytonschoeny/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="flex items-center gap-2 px-5 py-2.5 bg-slate-800 hover:bg-slate-700 rounded-lg font-medium text-sm transition-colors">
+                                <i data-lucide="linkedin" class="w-4 h-4"></i> LinkedIn
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <footer class="text-center text-slate-400 text-xs py-6 border-t border-slate-200">
+                <p>&copy;
+                    <script>document.write(new Date().getFullYear())</script> Clayton Schoeny. All rights reserved.
+                </p>
+            </footer>
+
+        </main>
+    </div>
+
+    <script>
+        // ==========================================
+        //  DATA CONFIGURATION
+        //  Edit this list to add/remove publications!
+        // ==========================================
+        const publications = [
+            {
+                title: "Coding Assisted Adaptive Thresholding for Sneak-Path Mitigation in Resistive Memories",
+                authors: "Zehui Chen, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE Information Theory Workshop (ITW), Guangzhou, China, Nov. 2018",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2018-11",
+                link: "https://ieeexplore.ieee.org/abstract/document/8613449",
+                abstract: "This paper proposes a coding-assisted adaptive thresholding technique to mitigate the effect of sneak-path currents in resistive memory arrays. By dynamically adjusting the read threshold based on the data pattern and the coding scheme, we can significantly reduce the read error rate. Simulation results demonstrate the effectiveness of this approach in high-density crossbar arrays."
+            },
+            {
+                title: "Error Correction and Detection for Computing Memories Using System Side Information",
+                authors: "Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE Information Theory Workshop (ITW), Guangzhou, China, Nov. 2018",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2018-11",
+                link: "https://ieeexplore.ieee.org/abstract/document/8613473",
+                abstract: "We present a novel error correction and detection framework for in-memory computing architectures. By exploiting system-level side information available during the computation, we can correct errors that would otherwise be undetectable by standard ECCs. This approach improves the reliability of in-memory computing operations without significant hardware overhead."
+            },
+            {
+                title: "Parity++: Lightweight Error Correction for Last Level Caches",
+                authors: "Irina Alam, Clayton Schoeny, Lara Dolecek, Puneet Gupta",
+                venue: "IEEE/IFIP DSN-W, Luxembourg City, Luxembourg, Jun. 2018",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2018-06",
+                link: "https://ieeexplore.ieee.org/abstract/document/8416233",
+                abstract: "As the size of on-chip SRAM caches is increasing rapidly and the physical dimension of the SRAM devices is decreasing, reliability of caches is becoming a growing concern. This is because with increased size of caches, the likelihood of radiation-induced soft faults also increases. As a result, information redundancy in the form of Error Correcting Codes (ECC) is becoming extremely important, especially to protect the larger sized last level caches (LLCs). In typical ECCs, extra redundancy bits are added to every row to detect and correct errors. There is additional encoding (while writing data) and decoding (while reading data) procedures required as well. In caches, these additional area, power and latency overheads need to be minimized as much as possible. To address this problem, we present in this paper Parity++: a novel unequal message protection scheme for last level caches that preferentially provides stronger error protection to certain “special messages”. This protection scheme provides Single Error Detection (SED) for all messages and Single Error Correction (SEC) for a subset of messages. Thus, it is stronger than just a basic SED parity and has ∼9% lower storage overhead and much lower error detection energy than a traditional Single Error Correcting, Double Error Detecting (SECDED) code. We also propose a memory speculation procedure that can be used with any ECC scheme to hide the decoding latency while reading messages when there are no errors."
+            },
+            {
+                title: "Coding for Future Large-Scale Data Systems",
+                authors: "Clayton Schoeny",
+                venue: "PhD Dissertation, UCLA, 2018",
+                type: "PhD Dissertation",
+                category: "phddissertation",
+                date: "2018-06",
+                link: "https://escholarship.org/uc/item/3nr4z1qp",
+                abstract: "This dissertation is focused on creating mathematical techniques---influenced by information theory and coding theory---to address the difficulties associated with storing, transmitting, and analyzing massive amounts of data. By necessity, memory devices are being created more compactly, leading to higher rates of errors. Each of the three parts of this dissertation seeks to combat the unique challenges and potential errors associated with next-generation storage technologies. These advanced error-correcting techniques can be utilized at the system-level for a variety of purposes, e.g., reducing energy consumption, increasing storage density, or decreasing the risk of a catastrophic system failure. The first part of the dissertation introduces Software-Defined Error-Correcting Codes: a framework for exploiting side-information to heuristically recover from detected (but uncorrectable) errors. The prominent features of this section include the underlying theory, experimental results, and an extension to error-localizing codes. The middle section of the dissertation focuses on coding for unequal message protection, in which special messages are granted extra error-correcting guarantees. A broad class of unequal message protection codes are constructed, maintaining the same amount of redundancy overhead as the baseline alternative. The final part of the dissertation includes code constructions to correct burst deletion errors in DNA storage---a very promising technology that will likely be commonplace in the near-future, complete with its own set of features and challenges. The coding theoretic techniques presented here, along with tools inspired by this dissertation, will play a significant role in mitigating errors in future large-scale data systems."
+            },
+            {
+                title: "Context-Aware Resiliency: Unequal Message Protection for Random-Access Memories",
+                authors: "Clayton Schoeny, Frederic Sala, Mark Gottscho, Irina Alam, Puneet Gupta, Lara Dolecek",
+                venue: "IEEE ITW, Kaohsiung, Taiwan, Nov. 2017",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2017-11",
+                link: "http://ieeexplore.ieee.org/document/8278033/",
+                abstract: "A common way to protect data stored in DRAM and related memory systems is through the use of a single-error-correcting/double-error-detecting (SECDED) code. Traditionally, these error-correcting codes provide equal protection guarantees to all messages. In a recent work, we demonstrated enhanced error correction capabilities for SECDED codes by taking into account contextual side-information about the data. This paper is concerned with a closely related scenario: unequal message protection (UMP), where a subset of special messages is afforded additional error-correction ability. UMP is relevant to computing systems where certain messages are critical and failures cannot be tolerated. We study practical UMP constructions where messages are guaranteed either one or two bit-error-correction. We provide upper and lower bounds on the number of special messages. We introduce an explicit and practical code construction based on BCH subcodes and demonstrate the efficacy of our technique on data from the AxBench and SPEC CPU2006 benchmark suites."
+            },
+            {
+                title: "Order-Optimal Permutation Codes in the Generalized Cayley Metric",
+                authors: "Siyi Yang, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE ITW, Kaohsiung, Taiwan, Nov. 2017",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2017-11",
+                link: "http://ieeexplore.ieee.org/document/8277943/",
+                abstract: "Permutation codes have recently garnered substantial research interest. In this paper, we study the theoretical bounds and the construction of permutation codes in the generalized Cayley metric. The generalized Cayley metric captures the number of generalized transposition errors in a permutation, and subsumes existing error types including transpositions and translocations without imposing restrictions on the lengths and positions of the translocated segments. Relying on the breakpoint analysis proposed by Chee and Vu, we construct a new class of permutation codes. Our proposed scheme, although it is not explicitly constructive, is proved to have an order-optimal rate. Based on this method, we then come up with the coding scheme of another class of permutation codes that is not only explicitly constructive but also systematic, in the generalized Cayley metric. We prove the existence of order-optimal systematic codes based on this method and provide a construction of such a code. Finally we prove that our coding schemes have less redundancy than the existing codes based on interleaving when the codelength is sufficiently large and the number of errors is relatively small."
+            },
+            {
+                title: "Novel Combinatorial Coding Results for DNA Sequencing and Data Storage",
+                authors: "Clayton Schoeny, Frederic Sala, Lara Dolecek",
+                venue: "IEEE Asilomar, Pacific Grove, CA, Nov. 2017",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2017-11",
+                link: "https://ieeexplore.ieee.org/abstract/document/8335392",
+                abstract: "Due to its incredible density and durability, DNA storage is a promising storage medium with the potential to handle the problems associated with the current exponential growth of data. However, DNA is an exotic storage technology, and as such, it can experience types of errors that typically do not occur in traditional storage devices such as, for example, insertions and deletions. We build upon a previous work by Schoeny et al. to construct an efficient non-binary burst-deletion correcting code. By setting the alphabet size to 4, this code is specifically suited for correcting burst-deletions in DNA storage."
+            },
+            {
+                title: "A Coding Scheme for Reliable In-Memory Hamming Distance Computation",
+                authors: "Zehui Chen, Clayton Schoeny, Yuval Cassuto, Lara Dolecek",
+                venue: "IEEE Asilomar, Pacific Grove, CA, Nov. 2017",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2017-11",
+                link: "https://ieeexplore.ieee.org/abstract/document/8335653",
+                abstract: "Computation-in-memory is a technique that has shown great potential in reducing the burden of massive data processing. Allowing for ultra-fast Hamming distance computations to be performed in-memory will drastically speed up many modern machine-learning algorithms. However, these in-memory calculations have not been studied in the presence of process variabilities. In this paper, we develop coding schemes to reliably compute, in-memory, the Hamming distances of pairs of vectors in the presence of write-time errors. Using an inversion coding technique, we establish error-detection guarantees as a function of the number of errors and the non-ideality of the resistive array memory in which the data is stored. To correct errors in the vector similarity comparison, we propose codes that achieve error correction and useful techniques for bit level data access and error localization. We demonstrate the effectiveness of our coding scheme on a simple example using the k-nearest neighbors algorithm."
+            },
+            {
+                title: "Low-Cost Memory Fault Tolerance for IoT Devices",
+                authors: "Mark Gottscho, Irina Alam, Clayton Schoeny, Lara Dolecek, Puneet Gupta",
+                venue: "ACM TECS - Special Issue ESWEEK 2017",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2017-10",
+                link: "https://dl.acm.org/citation.cfm?id=3126534",
+                abstract: "IoT devices need reliable hardware at low cost. It is challenging to efficiently cope with both hard and soft faults in embedded scratchpad memories. To address this problem, we propose a two-step approach: FaultLink and Software-Defined Error-Localizing Codes (SDELC). FaultLink avoids hard faults found during testing by generating a custom-tailored application binary image for each individual chip. During software deployment-time, FaultLink optimally packs small sections of program code and data into fault-free segments of the memory address space and generates a custom linker script for a lazy-linking procedure. During run-time, SDELC deals with unpredictable soft faults via novel and inexpensive Ultra-Lightweight Error-Localizing Codes (UL-ELCs). These require fewer parity bits than single-error-correcting Hamming codes. Yet our UL-ELCs are more powerful than basic single-error-detecting parity: they localize single-bit errors to a specific chunk of a codeword. SDELC then heuristically recovers from these localized errors using a small embedded C library that exploits observable side information (SI) about the application’s memory contents. SI can be in the form of redundant data (value locality), legal/illegal instructions, etc. Our combined FaultLink+SDELC approach improves min-VDD by up to 440 mV and correctly recovers from up to 90% (70%) of random single-bit soft faults in data (instructions) with just three parity bits per 32-bit word."
+            },
+            {
+                title: "Codes Correcting a Burst of Deletions or Insertions",
+                authors: "Clayton Schoeny, Antonia Wachter-Zeh, Ryan Gabrys, Eitan Yaakobi",
+                venue: "IEEE Transactions on Information Theory, vol. 63, no. 4, Jan. 2017",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2017-01",
+                link: "http://ieeexplore.ieee.org/abstract/document/7837631/",
+                abstract: "This paper studies codes that correct a burst of deletions or insertions. Namely, a code will be called a b-burst-deletion/insertion-correcting code if it can correct a burst of deletions/insertions of any b consecutive bits. While the lower bound on the redundancy of such codes was shown by Levenshtein to be asymptotically log(n) + b - 1, the redundancy of the best code construction by Cheng et al. is b(log(n/b + 1)). In this paper, we close on this gap and provide codes with redundancy at most log(n) + (b - 1) log(log(n)) + b - log(b). We first show that the models of insertions and deletions are equivalent and thus it is enough to study codes correcting a burst of deletions. We then derive a non-asymptotic upper bound on the size of b-burst-deletion-correcting codes and extend the burst deletion model to two more cases: (1) a deletion burst of at most b consecutive bits and (2) a deletion burst of size at most b (not necessarily consecutive). We extend our code construction for the first case and study the second case for b = 3, 4."
+            },
+            {
+                title: "Exact Reconstruction From Insertions in Synchronization Codes",
+                authors: "Frederic Sala, Ryan Gabrys, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE Transactions on Information Theory, vol. 63, no. 4, Jan. 2017",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2017-01",
+                link: "http://ieeexplore.ieee.org/abstract/document/7809143/",
+                abstract: "This paper studies problems in data reconstruction, an important area with numerous applications. In particular, we examine the reconstruction of binary and nonbinary sequences from synchronization (insertion/deletion-correcting) codes. These sequences have been corrupted by a fixed number of symbol insertions (larger than the minimum edit distance of the code), yielding a number of distinct traces to be used for reconstruction. We wish to know the minimum number of traces needed for exact reconstruction. This is a general version of a problem tackled by Levenshtein for uncoded sequences. We introduce an exact formula for the maximum number of common supersequences shared by sequences at a certain edit distance, yielding an upper bound on the number of distinct traces necessary to guarantee exact reconstruction. Without specific knowledge of the code words, this upper bound is tight. We apply our results to the famous single deletion/insertion-correcting Varshamov-Tenengolts (VT) codes and show that a significant number of VT code word pairs achieve the worst case number of outputs needed for exact reconstruction. We also consider extensions to other channels, such as adversarial deletion and insertion/deletion channels and probabilistic channels."
+            },
+            {
+                title: "On Nonuniform Noisy Decoding for LDPC Codes With Application to Radiation-Induced Errors",
+                authors: "Frederic Sala, Clayton Schoeny, Shahroze Kabir, Dariush Divsalar, Lara Dolecek",
+                venue: "IEEE Transactions on Communications, vol. 65, no. 4, Jan. 2017",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2017-01",
+                link: "http://ieeexplore.ieee.org/abstract/document/7833151/",
+                abstract: "Recent studies on noisy decoding for LDPC codes rely on the assumption that the noise in each component is independent and perpetual. This paper examines a noisy decoding model that generalizes this approach: the noise is due to multi-state channels, where the channel states are governed by queue-like processes. This model is inspired by errors in decoders that are due to the high levels of radiation. This is an important problem, as modern non-volatile memories (NVMs) must perform well in high-radiation environments if they are to be used for deep space applications. High levels of radiation have a significant impact on floating gate-based NVMs, such as flash, and therefore, require well-tuned, powerful error-correcting codes for reliable data storage along with the decoders capable of handling radiation-induced noisy components. We introduce a noisy LDPC decoding model subsuming certain previously studied models. This model is better suited to represent transient errors-in both variable nodes and check nodes-and allows for a more refined analysis compared with older, coarser models. We perform a density evolution-like theoretical evaluation, applicable to both regular and irregular codes, optimize the voting threshold for a Gallager B/E-decoder, and analyze the resulting evaluation. We also examine the finite block length case."
+            },
+            {
+                title: "Flash Memories in High Radiation Environments: LDPC Decoder Study",
+                authors: "Frederic Sala, Clayton Schoeny, Shahroze Kabit, Dariush Divsalar, Lara Dolecek",
+                venue: "IEEE Asilomar, Pacific Grove, CA, Nov. 2016",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-11",
+                link: "https://ieeexplore.ieee.org/abstract/document/8335729",
+                abstract: "Flash memory devices are increasingly being used in deep-space missions as on-board data storage in spacecraft. The harsh environment these missions take place in involves high levels of radiation which can cause decoding circuitry failures for the device error-correction module. For this reason, the decoder must be robust to radiation-induced errors. Previous works have studied hardware failure problem by modeling the circuitry noise as independent and constant in each component of the decoder. We propose a multi-state radiation channel which is designed to account for the dependence and duration of radiation-induced errors on different components. This model also subsumes some previously studied cases and allows for a more refined analysis. We introduce a corresponding LDPC combined Gallager B/E decoder and perform a density evolution analysis to characterize the idealized decoder performance. We optimize the decoder voting threshold parameter and apply our findings to a finite length case."
+            },
+            {
+                title: "Approximate File Synchronization: Upper Bounds and Interactive Algorithms",
+                authors: "Amirhossein Reisizadehmobarakeh, Clayton Schoeny, Chi-Yo Tsai, Lara Dolecek",
+                venue: "IEEE ITW, Cambridge, UK, Sep. 2016",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-09",
+                link: "http://ieeexplore.ieee.org/abstract/document/7606848/",
+                abstract: "File synchronization is a critical component of many modern data sharing applications. File synchronization is particularly challenging when different versions of a file that need to be synchronized differ in some number of edits. Several recent works have studied exact synchronization under edit errors. In this paper, we extend the available analytical toolbox of file synchronization by focusing on a previously unaddressed case of approximate synchronization wherein the reconstructed file need not be the same as the original file, but rather only be within some predetermined distortion. We study the case when a binary file undergoes symbol-level deletion errors with some small deletion rate (so that the total number of deletions is linear in file length). We derive a simple upper bound on the optimal rate of information that the transmitter (owner of the original file) needs to provide to the receiver (owner of the edited file) to allow the receiver to reconstruct the original file to within a predefined target distortion. We then create an approximate synchronization algorithm based on interactive communication between the transmitter and the receiver, and analyze the expected normalized communication bandwidth of our algorithm for various target distortion levels. Lastly, we implement our algorithm and provide experimental results on the approximate synchronization of a noisy image."
+            },
+            {
+                title: "Codes Correcting a Burst of Deletions or Insertions",
+                authors: "Clayton Schoeny, Antonia Wachter-Zeh, Ryan Gabrys, Eitan Yaakobi",
+                venue: "IEEE ISIT, Barcelona, Spain, Jul. 2016",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-07",
+                link: "http://ieeexplore.ieee.org/document/7541375/",
+                abstract: "This paper studies codes that correct bursts of deletions. Namely, a code will be called a b-burst-correcting code if it can correct a deletion of any b consecutive bits. While the lower bound on the redundancy of such codes was shown by Levenshtein to be asymptotically log(n) + b - 1, the redundancy of the best code construction by Cheng et al. is b(log(n/b + 1)). In this paper we close on this gap and provide codes with redundancy at most log(n) + (b - 1) log(log(n)) + b - log(b). We also extend the burst deletion model to two more cases: 1. a deletion burst of at most b consecutive bits and 2. a deletion burst of size at most b (not necessarily consecutive). We extend our code construction for the first case and study the second case for b = 3, 4. The equivalent models for insertions are also studied and are shown to be equivalent to correcting the corresponding burst of deletions."
+            },
+            {
+                title: "Exact Sequence Reconstruction for Insertion-Correcting Codes",
+                authors: "Fred Sala, Ryan Gabrys, Clayton Schoeny, Kayvon Mazooji, Lara Dolecek",
+                venue: "IEEE ISIT, Barcelona, Spain, Jul. 2016",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-07",
+                link: "http://ieeexplore.ieee.org/abstract/document/7541372/",
+                abstract: "We study the problem of perfectly reconstructing sequences from traces. The sequences are codewords from a deletion/insertion-correcting code and the traces are the result of corruption by a fixed number of symbol insertions (larger than the minimum edit distance of the code.) This is the general version of a problem tackled by Levenshtein for uncoded sequences. We introduce an exact formula for the maximum number of common supersequences shared by sequences at a certain edit distance, yielding a tight upper bound on the number of distinct traces necessary to guarantee exact reconstruction. We apply our results to the famous single deletion/insertion-correcting Varshamov-Tenengolts (VT) codes and show that a significant number of VT codeword pairs achieve the worst-case number of outputs needed for exact reconstruction."
+            },
+            {
+                title: "The Weight Consistency Matrix Framework for General Non-Binary LDPC Code Optimization",
+                authors: "Ahmed Hareedy, Chinmayi Lanka, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE ISIT, Barcelona, Spain, Jul. 2016",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-07",
+                link: "http://ieeexplore.ieee.org/abstract/document/7541791/",
+                abstract: "Transmission channels underlying modern memory systems, e.g., Flash memories, possess a significant amount of asymmetry. While existing LDPC codes optimized for symmetric, AWGN-like channels are being actively considered for Flash applications, we demonstrate that, due to channel asymmetry, such approaches are fairly inadequate. We propose a new, general, combinatorial framework for the analysis and design of non-binary LDPC (NB-LDPC) codes for asymmetric channels. We introduce a refined definition of absorbing sets, which we call general absorbing sets (GASs), and an important subclass of GASs, which we refer to as general absorbing sets of type two (GASTs). Additionally, we study the combinatorial properties of GASTs. We then present the weight consistency matrix (WCM), which succinctly captures key properties in a GAST. Based on these new concepts, we then develop a general code optimization framework, and demonstrate its effectiveness on the realistic highly-asymmetric normal-Laplace mixture (NLM) Flash channel. Our optimized codes enjoy over one order (resp., half of an order) of magnitude performance gain in the uncorrectable BER (UBER) relative to the unoptimized codes (resp. the codes optimized for symmetric channels)."
+            },
+            {
+                title: "Software-Defined Error-Correcting Codes",
+                authors: "Mark Gottscho, Clayton Schoeny, Lara Dolecek, Puneet Gupta",
+                venue: "IEEE/IFIP DSN-W, Toulouse, France, Jun. 2016",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-06",
+                link: "http://ieeexplore.ieee.org/abstract/document/7575399/",
+                abstract: "Conventional error-correcting codes (ECCs) and system-level fault-tolerance mechanisms are currently treated as separate abstraction layers. This can reduce the overall efficacy of error detection and correction (EDAC) capabilities, impacting the reliability of memories by causing crashes or silent data corruption. To address this shortcoming, we propose Software-Defined ECC (SWD-ECC), a new class of heuristic techniques to recover from detected but uncorrectable errors (DUEs) in memory. It uses available side information to estimate the original message by first filtering and then ranking the possible candidate codewords for a DUE. SWD-ECC does not incur any hardware or software overheads in the cases where DUEs do not occur. As an exemplar for SWD-ECC, we show through offline analysis on SPEC CPU2006 benchmarks how to heuristically recover from 2-bit DUEs in MIPS instruction memory using a common (39,32) single-error-correcting, double-error-detecting (SECDED) code. We first apply coding theory to compute all of the candidate codewords for a given DUE. Second, we filter out the candidates that are not legal MIPS instructions, increasing the chance of successful recovery. Finally, we choose a valid candidate whose logical operation (e.g., add or load) occurs most frequently in the application binary image. Our results show that on average, 34% of all possible 2-bit DUEs in the evaluated set of instructions can be successfully recovered using this heuristic recovery strategy. If a DUE affects the bit fields used for instruction decoding, we are able to recover correctly up to 99% of the time. We believe these results to be a significant achievement compared to an otherwise-guaranteed crash which can be undesirable in many systems and applications. Moreover, there is room for future improvement of this result with more sophisticated uses of side information. We look forward to future work in this area."
+            },
+            {
+                title: "Advanced Algebraic and Graph-Based ECC Schemes for Modern NVMs",
+                authors: "Frederic Sala, Clayton Schoeny, Lara Dolecek",
+                venue: "3D Flash Memories, Springer; 1st ed. | June 2016",
+                type: "Book Chapter",
+                category: "bookchapter",
+                date: "2016-06",
+                link: "http://www.springer.com/us/book/9789401775106",
+                abstract: "Transmission channels underlying modern memory systems, e.g., Flash memories, possess a significant amount of asymmetry. While existing LDPC codes optimized for symmetric, AWGN-like channels are being actively considered for Flash applications, we demonstrate that, due to channel asymmetry, such approaches are fairly inadequate. We propose a new, general, combinatorial framework for the analysis and design of non-binary LDPC (NB-LDPC) codes for asymmetric channels. We introduce a refined definition of absorbing sets, which we call general absorbing sets (GASs), and an important subclass of GASs, which we refer to as general absorbing sets of type two (GASTs). Additionally, we study the combinatorial properties of GASTs. We then present the weight consistency matrix (WCM), which succinctly captures key properties in a GAST. Based on these new concepts, we then develop a general code optimization framework, and demonstrate its effectiveness on the realistic highly-asymmetric normal-Laplace mixture (NLM) Flash channel. Our optimized codes enjoy over one order (resp., half of an order) of magnitude performance gain in the uncorrectable BER (UBER) relative to the unoptimized codes (resp. the codes optimized for symmetric channels)."
+            },
+            {
+                title: "Asymmetric ECCs for Flash in High-Radiation Environments",
+                authors: "Frederic Sala, Clayton Schoeny, Dariush Divsalar, Lara Dolecek",
+                venue: "IEEE Asilomar, Pacific Grove, CA, Nov. 2015",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2015-11",
+                link: "http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7094851",
+                abstract: "Research in coding for Flash devices typically deals with errors that occur during normal device operation. This work is instead concerned with codes that protect Flash devices that are experiencing errors caused by exposure to large radiation dosages. Such errors occur when, for example, Flash is used as onboard memory in satellites and space probes. In a previous paper, we examined the effects of errors on MLC Flash cells and introduced appropriate code constructions. In this work, we focus on the single level cell (SLC) case. We model the errors as being the result of a binary asymmetric channel (BASC). We show how to modify existing error-correcting codes in order to produce codes capable of correcting radiation-induced errors. Our approach focuses on finding and dealing with miscorrections, where an asymmetric decoder incorrectly deals with errors it is not designed to handle."
+            },
+            {
+                title: "Analysis and Coding Schemes for the Flash Normal-Laplace Mixture Channel",
+                authors: "Clayton Schoeny, Frederic Sala, Lara Dolecek",
+                venue: "IEEE ISIT, Hong Kong, Jun. 2015",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2015-06",
+                link: "http://ieeexplore.ieee.org/abstract/document/7421254/",
+                abstract: "Error-correcting codes are a critical need for modern flash memories. Such codes are typically designed under the assumption that the voltage threshold distributions in flash cells are Gaussian. This assumption, however, is not realistic. This is particularly the case late in the lifetime of flash devices. A recent work by Parnell et al. provides a parameterized model of MLC (2-bit cell) flash which accurately represents the voltage threshold distributions for an operating period up to 10 times longer than the device's specified lifetime. We analyze this model from an information-theoretic perspective and compute capacity for the resulting channel. We extrapolate the channel from an MLC to a TLC (3-bit cell) model and we characterize the resulting errors. We show that errors under the improved model are highly asymmetric. We introduce a code construction explicitly designed to exploit the asymmetric nature of these errors, and measure its improvement against existing codes at large P/E cycle counts."
+            },
+            {
+                title: "Three Novel Combinatorial Theorems for the Insertion/Deletion Channel",
+                authors: "Frederic Sala, Ryan Gabrys, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE ISIT, Hong Kong, Jun. 2015",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2015-06",
+                link: "http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=7282947",
+                abstract: "Although the insertion/deletion problem has been studied for more than fifty years, many results still remain elusive. The goal of this work is to present three novel theorems with a combinatorial flavor that shed further light on the structure and nature of insertions/deletions. In particular, we give an exact result for the maximum number of common supersequences between two sequences, extending older work by Levenshtein. We then generalize this result for sequences that have different lengths. Finally, we compute the exact neighborhood size for the binary circular (alternating) string Cn = 0101 ... 01. In addition to furthering our understanding of the insertion/deletion channel, these theorems can be used as building blocks in other applications. One such application is developing improved lower bounds on the sizes of insertion/deletion-correcting codes."
+            },
+            {
+                title: "Asymmetric Error-Correcting Codes for Flash Memories in High-Radiation Environments",
+                authors: "Frederic Sala, Clayton Schoeny, Dariush Divsalar, Frederic Sala, Lara Dolecek",
+                venue: "IEEE ISIT, Hong Kong, Jun. 2015",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2015-06",
+                link: "http://ieeexplore.ieee.org/xpl/login.jsp?tp=&arnumber=7282825",
+                abstract: "Research works exploring coding for Flash memories typically seek to correct errors taking place during normal device operation. In this paper, we study the design of codes that protect Flash devices dealing with the unusual class of errors caused by exposure to large radiation dosages. Significant radiation exposure can take place, for example, when Flash is used as on-board memory in satellites and space probes. We introduce an error model that captures the effects of radiation exposure. Such errors are asymmetric, with the additional feature that the degree (and direction) of asymmetry depends on the stored sequence. We develop an appropriate distance and an upper bound on the sizes of codes which correct such errors. We introduce and analyze several simple code constructions."
+            },
+            {
+                title: "Efficient File Synchronization: Extensions and Simulations",
+                authors: "Clayton Schoeny, Nicolas Bitouze, Frederic Sala, Lara Dolecek",
+                venue: "IEEE Asilomar, Pacific Grove, CA, Nov. 2014",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2014-11",
+                link: "http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7094851",
+                abstract: "We study the problem of synchronizing two files X and Y at two distant nodes A and B that are connected through a two-way communication channel. In our setup, Y is an edited version of X; edits are insertions and deletions that are potentially numerous. We previously proposed an order-wise optimal synchronization protocol for reconstructing file X at node B with an exponentially low probability of error. In this paper, we introduce an adaptive algebraic code to the synchronization protocol in order to increase efficiency in the presence of substitution errors. In addition, we expand on our previous results by presenting experimental results from several scenarios including different types of files and a variety of realistic error patterns."
+            },
+            {
+                title: "Efficient File Synchronization",
+                authors: "Clayton Schoeny",
+                venue: "Master's Thesis, UCLA, Jun. 2014",
+                type: "Master's Thesis",
+                category: "mastersthesis",
+                date: "2014-06",
+                link: "https://escholarship.org/uc/item/2zv341tg",
+                abstract: "We study the synchronization of two files X and Y at two distant users A and B that are connected through a two-way communication channel. We previously proposed a synchronization protocol for reconstructing X at user B with exponentially low probability of error. We have proven the order-wise optimality of the protocol where the binary file Y is the original binary file X modified through i.i.d. insertion and deletion edits. In this thesis, we expand on previous results by presenting experimental results from numerous scenarios including different types of files and a variety of realistic error patterns. In addition, we introduce novel improvements to the synchronization protocol to further increase efficiency."
+            }
+        ];
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // 1. Sidebar Logic
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('mobile-overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            overlay.classList.toggle('hidden');
+        }
+
+        // 2. Render Publications (NEW!)
+        const pubGrid = document.getElementById('publications-grid');
+        const pubFilters = document.getElementById('pub-filters');
+
+        function renderPublications() {
+            // Sort publications by date descending
+            const sortedPublications = [...publications].sort((a, b) => b.date.localeCompare(a.date));
+
+            pubGrid.innerHTML = sortedPublications.map((pub, idx) => {
+                // Determine color based on category
+                let badgeClass = "bg-slate-100 text-slate-600"; // default
+                if (pub.category === 'cpaper') badgeClass = "bg-blue-100 text-blue-700";
+                if (pub.category === 'jpaper') badgeClass = "bg-green-100 text-green-700";
+                if (pub.category === 'bookchapter') badgeClass = "bg-purple-100 text-purple-700";
+                if (pub.category === 'phddissertation') badgeClass = "bg-rose-100 text-rose-700";
+                if (pub.category === 'mastersthesis') badgeClass = "bg-amber-100 text-amber-700";
+
+                return `
+                <div class="pub-card bg-white rounded-lg shadow-sm border border-slate-100 p-4 hover:shadow-md transition-shadow duration-300 relative group" data-category="${pub.category}">
+                    <div class="flex flex-col">
+                        <div class="flex justify-between items-start">
+                            <div>
+                                <div class="flex items-center gap-2 mb-1">
+                                    <span class="text-[10px] uppercase tracking-wider font-bold px-1.5 py-0.5 rounded ${badgeClass}">${pub.type}</span>
+                                </div>
+                                <h3 class="text-base font-bold text-slate-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer" onclick="toggleAbstract(this)">${pub.title}</h3>
+                                <p class="text-slate-600 text-sm mb-1">${pub.authors}</p>
+                                <p class="text-slate-500 text-xs italic">${pub.venue}</p>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                ${pub.link ? `<a href="${pub.link}" target="_blank" rel="noopener noreferrer" class="p-1 text-slate-400 hover:text-blue-600 transition-colors"><i data-lucide="external-link" class="w-4 h-4"></i></a>` : ''}
+                                <button onclick="toggleAbstract(this)" class="p-1 text-slate-400 hover:text-blue-600 transition-colors">
+                                    <i data-lucide="chevron-down" class="w-5 h-5 chevron-icon"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pub-details text-sm text-slate-600 bg-slate-50 rounded-lg p-3 mt-2 border border-slate-100">
+                            <p><strong>Abstract:</strong> ${pub.abstract}</p>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+
+            // Re-initialize icons for new elements
+            lucide.createIcons();
+        }
+
+        // 3. Publication Filtering Logic
+        const filterButtons = document.querySelectorAll('.filter-btn');
+
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+
+                // Update button styles
+                filterButtons.forEach(b => {
+                    if (b.dataset.filter === filter) {
+                        b.className = 'filter-btn px-3 py-1.5 text-xs font-medium rounded-full transition-all bg-blue-600 text-white shadow-md';
+                    } else {
+                        b.className = 'filter-btn px-3 py-1.5 text-xs font-medium rounded-full transition-all bg-white border border-slate-200 text-slate-600 hover:bg-slate-50';
+                    }
+                });
+
+                // Filter cards (now targeting the dynamically created ones)
+                const cards = document.querySelectorAll('.pub-card');
+                cards.forEach(card => {
+                    if (filter === 'all' || card.dataset.category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 4. Toggle Abstracts Logic
+        window.toggleAbstract = function (element) {
+            const card = element.closest('.pub-card');
+            if (!card) return;
+            const details = card.querySelector('.pub-details');
+            const icon = card.querySelector('.chevron-icon');
+
+            if (details) {
+                details.classList.toggle('expanded');
+                if (icon) {
+                    icon.classList.toggle('rotated');
+                }
+            }
+        }
+
+        // 5. Scroll Spy (Active Link Highlighting) & Auto-Scroll Sidebar
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        let lastActiveId = ''; // Track the active section to prevent unnecessary scrolling
+
+        function updateActiveLink() {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Trigger slightly before the section hits the top of viewport
+                if (window.scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+                link.classList.add('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
+
+                if (link.dataset.target === current) {
+                    link.classList.remove('text-slate-300', 'hover:bg-slate-800', 'hover:text-white');
+                    link.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+
+                    // Auto-scroll the sidebar if the active section changes
+                    if (current !== lastActiveId) {
+                        link.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                    }
+                }
+            });
+
+            if (current) {
+                lastActiveId = current;
+            }
+        }
+
+        window.addEventListener('scroll', updateActiveLink);
+
+        // Initial Render
+        renderPublications();
+        updateActiveLink();
+
+    </script>
+</body>
+
+</html>
