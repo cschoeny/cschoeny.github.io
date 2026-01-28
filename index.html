@@ -98,6 +98,11 @@
         .chevron-icon.rotated {
             transform: rotate(180deg);
         }
+
+        /* Prevent browser scroll anchoring from causing jumps when grid resizes */
+        #publications {
+            overflow-anchor: none;
+        }
     </style>
 </head>
 
@@ -972,6 +977,56 @@
         // ==========================================
         const publications = [
             {
+                title: "Error Resilience and Energy Efficiency: An LDPC Decoder Design Study",
+                authors: "Philipp Schläfer, Chu-Hsiang Huang, Clayton Schoeny, Christian Weis, Yao Li, Norbert Wehn",
+                venue: "2016 Design, Automation & Test in Europe Conference & Exhibition, Dresden, Germany, Mar. 2013",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2016-03",
+                link: "https://ieeexplore.ieee.org/abstract/document/7459380",
+                abstract: "Iterative decoding algorithms for low-density parity check (LDPC) codes have an inherent fault tolerance. In this paper, we exploit this robustness and optimize an LDPC decoder for high energy efficiency: we reduce energy consumption by opportunistically increasing error rates in decoder memories, while still achieving successful decoding in the final iteration. We develop a theory-guided unequal error protection (UEP) technique. UEP is implemented using dynamic voltage scaling that controls the error probability in the decoder memories on a per iteration basis. Specifically, via a density evolution analysis of an LDPC decoder, we first formulate the optimization problem of choosing an appropriate error rate for the decoder memories to achieve successful decoding under minimal energy consumption. We then propose a low complexity greedy algorithm to solve this optimization problem and map the resulting error rates to the corresponding supply voltage levels of the decoder memories in each iteration of the decoding algorithm. We demonstrate the effectiveness of our approach via ASIC synthesis results of a decoder for the LDPC code in the IEEE 802.11ad standard, implemented in 28nm FD-SOI technology. The proposed scheme achieves an increase in energy efficiency of up to 40% compared to the state-of-the-art solution."
+            },
+            {
+                title: "Pilot Assisted Adaptive Thresholding for Sneak-Path Mitigation in Resistive Memories With Failed Selection Devices",
+                authors: "Zehui Chen, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE Transactions on Information Theory, vol. 68, no. 1, Jan. 2020",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2020-01",
+                link: "https://ieeexplore.ieee.org/abstract/document/8720213",
+                abstract: "Resistive random-access memory (ReRAM) with the crossbar structure is one promising candidate to be used as a next generation non-volatile memory device. In a crossbar ReRAM, in which a memristor is positioned on each row-column intersection, the sneak-path problem is one of the main challenges for a reliable readout. The sneak-path problem can be solved with additional selection devices. When some selection devices fail short, the sneak-path problem re-occurs. The re-occurred sneak-path problem is addressed in this paper. The re-occurred sneak-path event can be described combinatorially and its adverse effect can be modeled as a parallel interference. Based on a simple pilot construction, we probabilistically characterize the inter-cell dependency of the re-occurred sneak-path events. Utilizing this dependency, we propose adaptive thresholding schemes for resistive memory readout using side information provided by pilot cells. This estimation theoretic approach effectively reduces the bit-error rate while maintaining low redundancy overhead and low complexity."
+            },
+            {
+                title: "Context-Aware Resiliency: Unequal Message Protection for Random-Access Memories",
+                authors: "Clayton Schoeny, Frederic Sala, Mark Gottscho, Irina Alam, Puneet Gupta, Lara Dolecek",
+                venue: "IEEE Transactions on Information Theory, vol. 65, no. 10, Oct. 2019",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2019-10",
+                link: "https://ieeexplore.ieee.org/abstract/document/8720213",
+                abstract: "A common way to protect data stored in DRAM and related memory systems is through the use of an error-correcting code such as the extended Hamming code. Traditionally, these error-correcting codes provide equal protection guarantees to all messages. In this paper, we focus on unequal message protection (UMP), in which a subset of messages is deemed as special, and is afforded additional error-correction protection while maintaining the same number of redundancy bits as the baseline code. UMP is a powerful approach when the special messages are chosen based on the knowledge of data patterns in context. Our objective is to construct deterministic, algebraic codes with guaranteed UMP properties, derive their cardinality bounds using novel combinatorial techniques, and to demonstrate their efficacy for realistic memory benchmarks. We first introduce a UMP alternative to the single-bit parity-check code, and then we generalize to a broader UMP code family, including a UMP alternative to the extended Hamming code, offering full double-error correction protection to special messages. Our UMP constructions, applied to main memory in high-performance computing applications, could lead to significant system-level benefits such as less frequent checkpoints in supercomputers and decreased risk of catastrophic failure from erroneous special messages."
+            },
+            {
+                title: "Theoretical Bounds and Constructions of Codes in the Generalized Cayley Metric",
+                authors: "Siyi Yang, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE Transactions on Information Theory, vol. 65, no. 8, Aug. 2019",
+                type: "Journal Paper",
+                category: "jpaper",
+                date: "2019-08",
+                link: "https://ieeexplore.ieee.org/abstract/document/8643535",
+                abstract: "Permutation codes have recently garnered substantial research interest due to their potential in various applications, including cloud storage systems, genome resequencing, and flash memories. In this paper, we study the theoretical bounds and constructions of permutation codes in the generalized Cayley metric. The generalized Cayley metric captures the number of generalized transposition errors in a permutation and subsumes previously studied error types, including transpositions and translocations, without imposing restrictions on the lengths and positions of the translocated segments. Based on the so-called breakpoint analysis method proposed by Chee and Vu, we first present a coding framework that leads to order-optimal constructions, thus improving upon the existing constructions that are not order-optimal. We then use this framework to also develop an order-optimal coding scheme that is additionally explicit and systematic."
+            },
+            {
+                title: "An Interactive Algorithm for Synchronizing from Burst Deletions",
+                authors: "Shuyang Jiang, Clayton Schoeny, Lara Dolecek",
+                venue: "IEEE 10th International Symposium on Turbo Codes & Iterative Information Processing (ISTC), Hong Kong, China, Dec. 2018",
+                type: "Conference Paper",
+                category: "cpaper",
+                date: "2018-12",
+                link: "https://ieeexplore.ieee.org/abstract/document/8625363",
+                abstract: "We study the efficient synchronization between two distant nodes, A and B, that are connected through a lossless bidirectional communication channel. In our setup, Node A contains file X, and node B contains file Y that is generated through burst deletions from X. The burst deletion pattern is modeled by a stationary two-state Markov chain. Inspired by the previously proposed synchronization protocol of Yazdi and Dolecek that is specifically designed to handle i.i.d. deletions, we create a new synchronization algorithm that is efficient for the case of burst deletions. Utilizing the previous overall framework from Yazdi and Dolecek, we first prove that the matching module still works well in our scenario. We then invent two new schemes for the implementation of the burst deletion recovery module. The remaining errors created in the first two modules are eliminated by the final LDPC decoder. Lastly, we provide experimental results of the proposed synchronization algorithm for both i.i.d. and realistic sources."
+            },
+            {
                 title: "Coding Assisted Adaptive Thresholding for Sneak-Path Mitigation in Resistive Memories",
                 authors: "Zehui Chen, Clayton Schoeny, Lara Dolecek",
                 venue: "IEEE Information Theory Workshop (ITW), Guangzhou, China, Nov. 2018",
@@ -983,7 +1038,7 @@
             },
             {
                 title: "Error Correction and Detection for Computing Memories Using System Side Information",
-                authors: "Clayton Schoeny, Lara Dolecek",
+                authors: "Clayton Schoeny, Irina Alam, Mark Gottscho, Puneet Gupta, Lara Dolecek",
                 venue: "IEEE Information Theory Workshop (ITW), Guangzhou, China, Nov. 2018",
                 type: "Conference Paper",
                 category: "cpaper",
@@ -1054,10 +1109,10 @@
             {
                 title: "Low-Cost Memory Fault Tolerance for IoT Devices",
                 authors: "Mark Gottscho, Irina Alam, Clayton Schoeny, Lara Dolecek, Puneet Gupta",
-                venue: "ACM TECS - Special Issue ESWEEK 2017",
+                venue: "ACM Transactions on Embedded Computing Systems (TECS), vol. 16, no. 5s, Sep. 2017",
                 type: "Journal Paper",
                 category: "jpaper",
-                date: "2017-10",
+                date: "2017-09",
                 link: "https://dl.acm.org/citation.cfm?id=3126534",
                 abstract: "IoT devices need reliable hardware at low cost. It is challenging to efficiently cope with both hard and soft faults in embedded scratchpad memories. To address this problem, we propose a two-step approach: FaultLink and Software-Defined Error-Localizing Codes (SDELC). FaultLink avoids hard faults found during testing by generating a custom-tailored application binary image for each individual chip. During software deployment-time, FaultLink optimally packs small sections of program code and data into fault-free segments of the memory address space and generates a custom linker script for a lazy-linking procedure. During run-time, SDELC deals with unpredictable soft faults via novel and inexpensive Ultra-Lightweight Error-Localizing Codes (UL-ELCs). These require fewer parity bits than single-error-correcting Hamming codes. Yet our UL-ELCs are more powerful than basic single-error-detecting parity: they localize single-bit errors to a specific chunk of a codeword. SDELC then heuristically recovers from these localized errors using a small embedded C library that exploits observable side information (SI) about the application’s memory contents. SI can be in the form of redundant data (value locality), legal/illegal instructions, etc. Our combined FaultLink+SDELC approach improves min-VDD by up to 440 mV and correctly recovers from up to 90% (70%) of random single-bit soft faults in data (instructions) with just three parity bits per 32-bit word."
             },
@@ -1097,7 +1152,7 @@
                 venue: "IEEE Asilomar, Pacific Grove, CA, Nov. 2016",
                 type: "Conference Paper",
                 category: "cpaper",
-                date: "2016-11",
+                date: "2017-11",
                 link: "https://ieeexplore.ieee.org/abstract/document/8335729",
                 abstract: "Flash memory devices are increasingly being used in deep-space missions as on-board data storage in spacecraft. The harsh environment these missions take place in involves high levels of radiation which can cause decoding circuitry failures for the device error-correction module. For this reason, the decoder must be robust to radiation-induced errors. Previous works have studied hardware failure problem by modeling the circuitry noise as independent and constant in each component of the decoder. We propose a multi-state radiation channel which is designed to account for the dependence and duration of radiation-induced errors on different components. This model also subsumes some previously studied cases and allows for a more refined analysis. We introduce a corresponding LDPC combined Gallager B/E decoder and perform a density evolution analysis to characterize the idealized decoder performance. We optimize the decoder voting threshold parameter and apply our findings to a finite length case."
             },
@@ -1283,12 +1338,37 @@
             lucide.createIcons();
         }
 
+        // 2.5 Generate Filter Buttons (Fixing missing logic)
+        const categories = [
+            { id: 'all', label: 'All' },
+            { id: 'cpaper', label: 'Conference Papers' },
+            { id: 'jpaper', label: 'Journal Papers' },
+            { id: 'bookchapter', label: 'Book Chapters' },
+            { id: 'phddissertation', label: 'PhD Dissertation' },
+            { id: 'mastersthesis', label: 'Master\'s Thesis' }
+        ];
+        const filterContainer = document.getElementById('pub-filters');
+        filterContainer.innerHTML = categories.map(cat => `
+            <button type="button" class="filter-btn px-3 py-1.5 text-xs font-medium rounded-full transition-all ${cat.id === 'all' ? 'bg-blue-600 text-white shadow-md' : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'}" data-filter="${cat.id}">
+                ${cat.label}
+            </button>
+        `).join('');
+
+
         // 3. Publication Filtering Logic
         const filterButtons = document.querySelectorAll('.filter-btn');
 
         filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
                 const filter = btn.dataset.filter;
+
+                // 1. Capture the button's position relative to the viewport BEFORE the change
+                const buttonRect = btn.getBoundingClientRect();
+                const buttonTopBefore = buttonRect.top;
+
+                // Disable smooth scroll for instant layout update
+                document.documentElement.style.scrollBehavior = 'auto';
 
                 // Update button styles
                 filterButtons.forEach(b => {
@@ -1299,8 +1379,8 @@
                     }
                 });
 
-                // Filter cards (now targeting the dynamically created ones)
-                const cards = document.querySelectorAll('.pub-card');
+                // Filter cards (only target cards inside the publications grid)
+                const cards = document.querySelectorAll('#publications-grid .pub-card');
                 cards.forEach(card => {
                     if (filter === 'all' || card.dataset.category === filter) {
                         card.style.display = 'block';
@@ -1308,6 +1388,22 @@
                         card.style.display = 'none';
                     }
                 });
+
+                // 2. Capture position AFTER change
+                // We force a reflow by reading the property
+                const buttonTopAfter = btn.getBoundingClientRect().top;
+
+                // 3. Adjust scroll to keep button stable
+                const diff = buttonTopAfter - buttonTopBefore;
+                // If the difference is significant (e.g. more than 1px), adjust scroll
+                if (Math.abs(diff) > 1) {
+                    window.scrollBy(0, diff);
+                }
+
+                // Restore smooth scroll
+                setTimeout(() => {
+                    document.documentElement.style.scrollBehavior = 'smooth';
+                }, 50);
             });
         });
 
